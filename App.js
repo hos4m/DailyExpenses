@@ -4,6 +4,10 @@ import { Container, Content, Tab, Tabs, TabHeading, Text } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
 
 import AppHeader from "./components/header";
+import ExpensesScreen from "./screens/expenses/expenses";
+import SummaryScreen from "./screens/summary/summary";
+import CategoriesScreen from "./screens/categories/categories";
+import SettingsScreen from "./screens/settings/settings";
 
 export default class App extends React.Component {
   generateHeading(name) {
@@ -21,22 +25,22 @@ export default class App extends React.Component {
         <Tabs tabBarPosition="bottom">
           <Tab heading={this.generateHeading('money')}>
             <Content style={styles.appContent}>
-              <Text>Tab 1</Text>
+              <ExpensesScreen />
             </Content>
           </Tab>
           <Tab heading={this.generateHeading('pie-chart')}>
             <Content style={styles.appContent}>
-              <Text>Tab 2</Text>
+              <SummaryScreen />
             </Content>
           </Tab>
           <Tab heading={this.generateHeading('list')}>
             <Content style={styles.appContent}>
-              <Text>Tab 3</Text>
+              <CategoriesScreen />
             </Content>
           </Tab>
           <Tab heading={this.generateHeading('gears')}>
             <Content style={styles.appContent}>
-              <Text>Tab 4</Text>
+              <SettingsScreen />
             </Content>
           </Tab>
         </Tabs>

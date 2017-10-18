@@ -4,14 +4,14 @@ import { Container, Content, Tab, Tabs, TabHeading, Text } from 'native-base';
 import { FontAwesome } from "react-native-vector-icons";
 
 import AppHeader from "./components/header";
-import ExpensesScreen from "./screens/expenses/expenses";
-import SummaryScreen from "./screens/summary/summary";
-import CategoriesScreen from "./screens/categories/categories";
-import SettingsScreen from "./screens/settings/settings";
+import ExpensesScreen from "./screens/expenses";
+import SummaryScreen from "./screens/summary";
+import CategoriesScreen from "./screens/categories";
+import SettingsScreen from "./screens/settings";
 
 export default class App extends React.Component {
   generateHeading(name) {
-    return(
+    return (
       <TabHeading>
         <FontAwesome name={name} style={styles.tabIcon} />
       </TabHeading>

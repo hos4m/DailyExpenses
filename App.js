@@ -10,7 +10,7 @@ import CategoriesScreen from "./screens/categories";
 import SettingsScreen from "./screens/settings";
 
 export default class App extends React.Component {
-  generateHeading(name) {
+  generateTabHeading(name) {
     return (
       <TabHeading>
         <FontAwesome name={name} style={styles.tabIcon} />
@@ -22,23 +22,27 @@ export default class App extends React.Component {
     return (
       <Container>
         <AppHeader />
-        <Tabs tabBarPosition="bottom">
-          <Tab heading={this.generateHeading('money')}>
+
+        <Tabs tabBarPosition="bottom" onChangeTab={() => this.tabsOnChange()}>
+          <Tab heading={this.generateTabHeading('money')}>
             <Content style={styles.appContent}>
               <ExpensesScreen />
             </Content>
           </Tab>
-          <Tab heading={this.generateHeading('pie-chart')}>
+
+          <Tab heading={this.generateTabHeading('pie-chart')}>
             <Content style={styles.appContent}>
               <SummaryScreen />
             </Content>
           </Tab>
-          <Tab heading={this.generateHeading('list')}>
+
+          <Tab heading={this.generateTabHeading('list')}>
             <Content style={styles.appContent}>
               <CategoriesScreen />
             </Content>
           </Tab>
-          <Tab heading={this.generateHeading('gears')}>
+
+          <Tab heading={this.generateTabHeading('gears')}>
             <Content style={styles.appContent}>
               <SettingsScreen />
             </Content>

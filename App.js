@@ -23,7 +23,7 @@ export default class App extends React.Component {
       <Container>
         <AppHeader />
 
-        <Tabs tabBarPosition="bottom" onChangeTab={() => this.tabsOnChange()}>
+        <Tabs tabBarPosition="bottom">
           <Tab heading={this.generateTabHeading('money')}>
             <Content style={styles.appContent}>
               <ExpensesScreen />

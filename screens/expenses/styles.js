@@ -9,9 +9,8 @@ export default {
     marginBottom: 15
   },
 
-  addText: {
-    fontWeight: "900",
-    paddingLeft: 10
+  addButton: {
+    width: "100%"
   },
 
   addIcon: {
@@ -19,6 +18,11 @@ export default {
     fontSize: 14,
     fontWeight: "900",
     marginLeft: 15
+  },
+
+  addText: {
+    fontWeight: "900",
+    paddingLeft: 10
   },
 
   entryRow: {

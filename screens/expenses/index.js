@@ -14,7 +14,11 @@ export default class ExpensesScreen extends React.Component {
     return (
       <View>
         <View style={styles.addButtonView}>
-          <Button block onPress={this.onAddExpensesClick.bind(this)}>
+          <Button
+            block
+            style={styles.addButton}
+            onPress={this.onAddExpensesClick.bind(this)}
+          >
             <FontAwesome name="plus" style={styles.addIcon} />
             <Text style={styles.addText}>Add Expenses</Text>
           </Button>

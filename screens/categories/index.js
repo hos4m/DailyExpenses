@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-native";
 import { View, Text } from "native-base";
 import { FontAwesome } from "react-native-vector-icons";
 
@@ -15,7 +16,15 @@ export default class CategoriesScreen extends React.Component {
   }
 
   deleteCategory() {
-    alert("Delete Category");
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to delete this category?',
+      [
+        {text: 'Yes', onPress: () => console.log('Yes pressed')},
+        {text: 'No', onPress: () => console.log('No pressed')},
+      ],
+      { cancelable: true }
+    )
   }
 
   render() {

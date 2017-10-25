@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { View, Button, Text } from "native-base";
 import { FontAwesome } from "react-native-vector-icons";
 
@@ -12,5 +12,10 @@ const ActionButton = ({ title, onPressFunc }) => (
     </Button>
   </View>
 );
+
+ActionButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  onPressFunc: PropTypes.func.isRequired,
+}
 
 export default ActionButton;

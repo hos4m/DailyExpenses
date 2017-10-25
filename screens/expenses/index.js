@@ -1,8 +1,7 @@
 import React from "react";
-import { Modal } from "react-native";
-import { Text, Button, View } from "native-base";
-import { FontAwesome } from "react-native-vector-icons";
+import { View, Text } from "native-base";
 
+import ActionButton from "../../components/actionButton";
 import styles from "./styles";
 
 export default class ExpensesScreen extends React.Component {
@@ -13,16 +12,7 @@ export default class ExpensesScreen extends React.Component {
   render() {
     return (
       <View>
-        <View style={styles.addButtonView}>
-          <Button
-            block
-            style={styles.addButton}
-            onPress={this.onAddExpensesClick.bind(this)}
-          >
-            <FontAwesome name="plus" style={styles.addIcon} />
-            <Text style={styles.addText}>Add Expenses</Text>
-          </Button>
-        </View>
+        <ActionButton onPressFunc={() => this.onAddExpensesClick()} />
 
         {[1, 2, 3, 4].map(() => {
           return [

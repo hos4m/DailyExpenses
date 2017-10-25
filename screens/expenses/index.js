@@ -6,13 +6,13 @@ import styles from "./styles";
 
 export default class ExpensesScreen extends React.Component {
   onAddExpensesClick() {
-    alert("test");
+    alert("Add Expenses");
   }
 
   render() {
     return (
       <View>
-        <ActionButton onPressFunc={() => this.onAddExpensesClick()} />
+        <ActionButton title="Add Expenses" onPressFunc={() => this.onAddExpensesClick()} />
 
         {[1, 2, 3, 4].map(() => {
           return [

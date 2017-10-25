@@ -30,15 +30,15 @@ export default class App extends React.Component {
             </Content>
           </Tab>
 
-          <Tab heading={this.generateTabHeading('pie-chart')}>
-            <Content style={styles.appContent}>
-              <SummaryScreen />
-            </Content>
-          </Tab>
-
           <Tab heading={this.generateTabHeading('list')}>
             <Content style={styles.appContent}>
               <CategoriesScreen />
+            </Content>
+          </Tab>
+
+          <Tab heading={this.generateTabHeading('pie-chart')}>
+            <Content style={styles.appContent}>
+              <SummaryScreen />
             </Content>
           </Tab>
 

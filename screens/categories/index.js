@@ -20,8 +20,8 @@ export default class CategoriesScreen extends React.Component {
       'Confirm',
       'Are you sure you want to delete this category?',
       [
-        {text: 'Yes', onPress: () => console.log('Yes pressed')},
-        {text: 'No', onPress: () => console.log('No pressed')},
+        { text: 'Yes', onPress: () => console.log('Yes pressed') },
+        { text: 'No', onPress: () => console.log('No pressed') },
       ],
       { cancelable: true }
     )

@@ -14,7 +14,6 @@ export default {
 
   text: {
     fontSize: 18,
-    fontWeight: "700",
   },
 
   iconsWrapper: {

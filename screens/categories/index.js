@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert } from "react-native";
 import { View, Text } from "native-base";
-import { FontAwesome } from "react-native-vector-icons";
+import { Ionicons } from "react-native-vector-icons";
 
 import ActionButton from "../../components/actionButton";
 import styles from "./styles";
@@ -39,8 +39,8 @@ export default class CategoriesScreen extends React.Component {
             </View>
 
             <View style={styles.iconsWrapper}>
-              <FontAwesome name="edit" style={styles.icon} onPress={() => this.editCategory()} />
-              <FontAwesome name="trash" style={[styles.icon, styles.deleteIcon]} onPress={() => this.deleteCategory()} />
+              <Ionicons name="ios-construct-outline" style={styles.icon} onPress={() => this.editCategory()} />
+              <Ionicons name="ios-trash-outline" style={[styles.icon, styles.deleteIcon]} onPress={() => this.deleteCategory()} />
             </View>
           </View>
 
@@ -50,8 +50,8 @@ export default class CategoriesScreen extends React.Component {
             </View>
 
             <View style={styles.iconsWrapper}>
-              <FontAwesome name="edit" style={styles.icon} onPress={() => this.editCategory()} />
-              <FontAwesome name="trash" style={[styles.icon, styles.deleteIcon]} onPress={() => this.deleteCategory()} />
+              <Ionicons name="ios-construct-outline" style={styles.icon} onPress={() => this.editCategory()} />
+              <Ionicons name="ios-trash-outline" style={[styles.icon, styles.deleteIcon]} onPress={() => this.deleteCategory()} />
             </View>
           </View>
         </View>

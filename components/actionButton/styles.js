@@ -13,13 +13,12 @@ export default {
 
   addIcon: {
     color: "white",
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: "900",
     marginLeft: 15
   },
 
   addText: {
-    fontWeight: "900",
     paddingLeft: 10
-  },
+  }
 };

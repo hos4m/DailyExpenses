@@ -1,7 +1,7 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Container, Content, Tab, Tabs, TabHeading, Text } from 'native-base';
-import { FontAwesome } from "react-native-vector-icons";
+import React from "react";
+import { StyleSheet } from "react-native";
+import { Container, Content, Tab, Tabs, TabHeading, Text } from "native-base";
+import { Ionicons } from "react-native-vector-icons";
 
 import AppHeader from "./components/header";
 import ExpensesScreen from "./screens/expenses";
@@ -13,7 +13,7 @@ export default class App extends React.Component {
   generateTabHeading(name) {
     return (
       <TabHeading>
-        <FontAwesome name={name} style={styles.tabIcon} />
+        <Ionicons name={name} style={styles.tabIcon} />
       </TabHeading>
     );
   }
@@ -24,25 +24,25 @@ export default class App extends React.Component {
         <AppHeader />
 
         <Tabs tabBarPosition="bottom">
-          <Tab heading={this.generateTabHeading('money')}>
+          <Tab heading={this.generateTabHeading("ios-cash-outline")}>
             <Content style={styles.appContent}>
               <ExpensesScreen />
             </Content>
           </Tab>
 
-          <Tab heading={this.generateTabHeading('list')}>
+          <Tab heading={this.generateTabHeading("ios-list-box-outline")}>
             <Content style={styles.appContent}>
               <CategoriesScreen />
             </Content>
           </Tab>
 
-          <Tab heading={this.generateTabHeading('pie-chart')}>
+          <Tab heading={this.generateTabHeading("ios-stats-outline")}>
             <Content style={styles.appContent}>
               <SummaryScreen />
             </Content>
           </Tab>
 
-          <Tab heading={this.generateTabHeading('gears')}>
+          <Tab heading={this.generateTabHeading("ios-options-outline")}>
             <Content style={styles.appContent}>
               <SettingsScreen />
             </Content>
@@ -55,10 +55,10 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   appContent: {
-    padding: 10,
+    padding: 10
   },
 
   tabIcon: {
-    fontSize: 20,
-  },
+    fontSize: 20
+  }
 });

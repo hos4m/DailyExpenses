@@ -1,14 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import { Alert } from "react-native";
 import { View, Text } from "native-base";
 import { Ionicons } from "react-native-vector-icons";
+import { connect } from "redux-zero/react";
 
 import ActionButton from "../../components/actionButton";
+import categoryActions from "../../redux/actions/category.actions";
 import styles from "./styles";
 
-export default class CategoriesScreen extends React.Component {
+const mapToProps = ({ categories }) => ({ categories });
+
+class CategoriesScreen extends Component {  
   addCategory() {
-    alert("Add Category");
+    const { addCategoryAction, categories } = this.props;
+    
+    addCategoryAction({
+      id: new Date(),
+      title: "Test",
+    });
   }
 
   editCategory() {
@@ -59,3 +68,5 @@ export default class CategoriesScreen extends React.Component {
     )
   }
 };
+
+export default connect(mapToProps, categoryActions)(CategoriesScreen);

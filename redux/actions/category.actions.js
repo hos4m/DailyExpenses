@@ -1,6 +1,3 @@
-export default (actions = store => ({
-  addCategoryAction: (state, category) => {
-    const newCategories = [...state.categories, category]
-    return { categories: newCategories };
-  }
-}));
+export default store => ({
+  addExpense: data => state => ({ expenses: [...expenses, data] })
+});

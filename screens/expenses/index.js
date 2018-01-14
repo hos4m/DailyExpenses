@@ -1,18 +1,24 @@
-import React from "react";
-import { View, Text, Button, Form, Item, Input, Picker } from "native-base";
-import { Modal } from "react-native";
+import React, { Component } from 'react';
+import { connect } from 'redux-zero/react';
+import moment from 'moment';
+import { View, Text, Button, Form, Item, Input, Picker } from 'native-base';
+import { Modal } from 'react-native';
 const PickerItem = Picker.Item;
 
-import ActionButton from "../../components/actionButton";
-import styles from "./styles";
+import actions from '../../redux/actions/category.actions';
+import ActionButton from '../../components/actionButton';
+import styles from './styles';
 
-export default class ExpensesScreen extends React.Component {
+const mapToProps = ({ expenses }) => ({ expenses });
+export default connect(mapToProps, actions)(({ expenses, addExpense }) => <ExpensesScreen expenses={expenses} />);
+
+class ExpensesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
       modalAmount: null,
-      modalSelectedCategory: null,
+      modalSelectedCategory: null
     };
   }
 
@@ -25,16 +31,16 @@ export default class ExpensesScreen extends React.Component {
   }
 
   changeModalPrice(val) {
-    this.setState({ modalAmount: val })
+    this.setState({ modalAmount: val });
   }
 
   modalAdd() {
     const { modalAmount, modalSelectedCategory } = this.state;
 
     if (modalAmount && modalSelectedCategory) {
-      alert("Expnses add functionality");
+      alert('Expnses add functionality');
     } else {
-      alert("All fields are required");
+      alert('All fields are required');
     }
   }
 
@@ -45,41 +51,33 @@ export default class ExpensesScreen extends React.Component {
   render() {
     return (
       <View>
-        <ActionButton
-          title="Add Expenses"
-          onPressFunc={() => this.onAddExpensesClick()}
-        />
+        <ActionButton title="Add Expenses" onPressFunc={() => this.onAddExpensesClick()} />
 
-        {[1, 2, 3, 4].map(() => {
-          return [
-            <View style={styles.entryRow}>
-              <View>
-                <Text style={styles.entryCategory}>Taxi</Text>
-                <Text style={styles.entryDate}>12 Sep</Text>
-              </View>
-
-              <View>
-                <Text style={styles.entryExpense}>$15</Text>
-              </View>
+        {this.props.expenses.map(expense => (
+          <View style={styles.entryRow} key={expense.id}>
+            <View>
+              <Text style={styles.entryCategory}>{expense.cateogry}</Text>
+              <Text style={styles.entryDate}>{moment(new Date(expense.date)).format('MMMM Do YYYY')}</Text>
             </View>
-          ];
-        })}
 
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-        >
+            <View>
+              <Text style={styles.entryExpense}>${expense.amount}</Text>
+            </View>
+          </View>
+        ))}
+
+        <Modal animationType="slide" transparent={false} visible={this.state.modalVisible}>
           <View style={styles.modal}>
             <Form style={styles.modalForm}>
               <Item style={styles.modalFormItem}>
                 <Text style={styles.modalDollarSign}>$</Text>
                 <Input
-                  keyboardType="numeric"  
+                  keyboardType="numeric"
                   placeholder="---"
                   placeholderTextColor="#999"
-                  onChangeText={(val) => this.changeModalPrice(val)}
-                  style={styles.modalFormInput} />
+                  onChangeText={val => this.changeModalPrice(val)}
+                  style={styles.modalFormInput}
+                />
               </Item>
 
               <Item style={styles.modalFormItem}>

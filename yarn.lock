@@ -3791,6 +3791,10 @@ moment@2.x.x, moment@^2.10.6:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
+moment@^2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+
 morgan@~1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.6.1.tgz#5fd818398c6819cba28a7cd6664f292fe1c0bbf2"
@@ -4804,6 +4808,10 @@ redux-logger@^2.7.4:
   resolved "https://registry.yarnpkg.com/redux-logger/-/redux-logger-2.10.2.tgz#3c5a5f0a6f32577c1deadf6655f257f82c6c3937"
   dependencies:
     deep-diff "0.3.4"
+
+redux-zero@^4.3.0:
+  version "4.9.1"
+  resolved "https://registry.yarnpkg.com/redux-zero/-/redux-zero-4.9.1.tgz#fc1f8568b0d1b1f1136711d7dafcab81614c3a7c"
 
 redux@^3.6.0:
   version "3.7.2"

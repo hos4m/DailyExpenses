@@ -14,7 +14,6 @@ export default {
 
   entryCategory: {
     fontSize: 18,
-    fontWeight: "700"
   },
 
   entryDate: {

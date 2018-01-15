@@ -18,6 +18,12 @@ class ExpensesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      ...this.resetAddExpenseFields()
+    };
+  }
+
+  resetAddExpenseFields() {
+    return {
       modalVisible: false,
       modalAmount: null,
       modalSelectedCategory: null
@@ -47,7 +53,7 @@ class ExpensesScreen extends Component {
         amount: modalAmount
       };
       this.props.addExpense(payload);
-      this.setState({ modalVisible: false });
+      this.setState({ ...this.resetAddExpenseFields() });
     } else {
       alert('All fields are required');
     }
@@ -61,6 +67,8 @@ class ExpensesScreen extends Component {
     return (
       <View>
         <ActionButton title="Add Expenses" onPressFunc={() => this.onAddExpensesClick()} />
+
+        {this.props.expenses.length === 0 && <Text style={styles.noItems}>NONE</Text>}
 
         {this.props.expenses.map(expense => (
           <View style={styles.entryRow} key={expense.id}>

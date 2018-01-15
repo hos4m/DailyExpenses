@@ -1,10 +1,19 @@
-import theme from "../../constants/theme";
+import theme from '../../constants/theme';
 
 export default {
+  noItems: {
+    textAlign: 'center',
+    marginTop: 150,
+    fontSize: 48,
+    opacity: 0.2,
+    fontWeight: '700',
+    letterSpacing: 2,
+  },
+
   entryRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingBottom: 10,
     paddingHorizontal: 5,
     marginBottom: 10,
@@ -13,7 +22,7 @@ export default {
   },
 
   entryCategory: {
-    fontSize: 18,
+    fontSize: 18
   },
 
   entryDate: {
@@ -28,32 +37,32 @@ export default {
   modal: {
     marginTop: 22,
     padding: 22,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     flex: 1
   },
 
   modalForm: {
-    width: "100%",
+    width: '100%'
   },
 
   modalFormItem: {
-    marginLeft: 0,
+    marginLeft: 0
   },
 
   modalFormInput: {
-    paddingLeft: 15,
+    paddingLeft: 15
   },
 
   modalDollarSign: {
-    marginLeft: 15,
+    marginLeft: 15
   },
 
   modalButtons: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 22,
     left: 22,
-    width: "100%"
-  },
+    width: '100%'
+  }
 };

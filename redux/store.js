@@ -4,13 +4,13 @@ const initialState = {
   expenses: [
     {
       id: 1,
-      cateogry: 'taxi',
+      category: 'taxi',
       date: new Date().toString(),
       amount: '15'
     },
     {
       id: 2,
-      cateogry: 'food',
+      category: 'food',
       date: new Date().toString(),
       amount: '25'
     }

@@ -5,12 +5,14 @@ import { View, Text, Button, Form, Item, Input, Picker } from 'native-base';
 import { Modal } from 'react-native';
 const PickerItem = Picker.Item;
 
-import actions from '../../redux/actions/category.actions';
+import actions from '../../redux/actions/expenses.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
 
 const mapToProps = ({ expenses }) => ({ expenses });
-export default connect(mapToProps, actions)(({ expenses, addExpense }) => <ExpensesScreen expenses={expenses} />);
+export default connect(mapToProps, actions)(({ expenses, addExpense }) => (
+  <ExpensesScreen expenses={expenses} addExpense={addExpense} />
+));
 
 class ExpensesScreen extends Component {
   constructor(props) {
@@ -38,7 +40,14 @@ class ExpensesScreen extends Component {
     const { modalAmount, modalSelectedCategory } = this.state;
 
     if (modalAmount && modalSelectedCategory) {
-      alert('Expnses add functionality');
+      const payload = {
+        id: new Date().toString(),
+        date: new Date().toString(),
+        category: modalSelectedCategory,
+        amount: modalAmount
+      };
+      this.props.addExpense(payload);
+      this.setState({ modalVisible: false });
     } else {
       alert('All fields are required');
     }
@@ -56,7 +65,7 @@ class ExpensesScreen extends Component {
         {this.props.expenses.map(expense => (
           <View style={styles.entryRow} key={expense.id}>
             <View>
-              <Text style={styles.entryCategory}>{expense.cateogry}</Text>
+              <Text style={styles.entryCategory}>{expense.category}</Text>
               <Text style={styles.entryDate}>{moment(new Date(expense.date)).format('MMMM Do YYYY')}</Text>
             </View>
 

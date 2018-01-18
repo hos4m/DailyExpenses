@@ -9,9 +9,9 @@ import actions from '../../redux/actions/expenses.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
 
-const mapToProps = ({ expenses }) => ({ expenses });
-export default connect(mapToProps, actions)(({ expenses, addExpense }) => (
-  <ExpensesScreen expenses={expenses} addExpense={addExpense} />
+const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
+export default connect(mapToProps, actions)(({ expenses, categories, addExpense }) => (
+  <ExpensesScreen expenses={expenses} categories={categories} addExpense={addExpense} />
 ));
 
 class ExpensesScreen extends Component {
@@ -105,8 +105,9 @@ class ExpensesScreen extends Component {
                   selectedValue={this.state.modalSelectedCategory}
                   onValueChange={this.onModalCategorySelect.bind(this)}
                 >
-                  <PickerItem label="Taxi" value="taxi" />
-                  <PickerItem label="Food" value="food" />
+                  {this.props.categories.map(category => (
+                    <PickerItem key={category.id} label={category.name} value={category.name} />
+                  ))}
                 </Picker>
               </Item>
             </Form>

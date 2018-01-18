@@ -30,11 +30,7 @@ class CategoriesScreen extends Component {
       );
 
       if (!findExistingCategory) {
-        const payload = {
-          id: new Date().toString(),
-          name: value
-        };
-
+        const payload = { id: new Date().toString(), name: value };
         this.props.addCategory(payload);
         this.setState({ isAddModalVisible: false });
       } else {

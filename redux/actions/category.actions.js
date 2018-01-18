@@ -1,3 +1,3 @@
 export default store => ({
-  addExpense: data => state => ({ expenses: [...expenses, data] })
+  addCategory: (state, payload) => ({ categories: [...state.categories, payload] })
 });

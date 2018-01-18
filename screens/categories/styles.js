@@ -1,10 +1,19 @@
-import theme from "../../constants/theme";
+import theme from '../../constants/theme';
 
 export default {
+  noItems: {
+    textAlign: 'center',
+    marginTop: 150,
+    fontSize: 48,
+    opacity: 0.2,
+    fontWeight: '700',
+    letterSpacing: 2
+  },
+
   entryRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingBottom: 10,
     paddingHorizontal: 5,
     marginBottom: 10,
@@ -13,21 +22,21 @@ export default {
   },
 
   text: {
-    fontSize: 18,
+    fontSize: 18
   },
 
   iconsWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center'
   },
 
   icon: {
     fontSize: 30,
     padding: 10,
-    color: "gray",
+    color: 'gray'
   },
 
   deleteIcon: {
-    color: "red",
-  },
-}
+    color: 'red'
+  }
+};

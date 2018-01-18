@@ -25,13 +25,21 @@ class CategoriesScreen extends Component {
 
   addCategory(value) {
     if (value.length > 0) {
-      const payload = {
-        id: new Date().toString(),
-        name: value
-      };
+      const findExistingCategory = this.props.categories.find(
+        category => category.name.toLowerCase() === value.toLowerCase()
+      );
 
-      this.props.addCategory(payload);
-      this.setState({ isAddModalVisible: false });
+      if (!findExistingCategory) {
+        const payload = {
+          id: new Date().toString(),
+          name: value
+        };
+
+        this.props.addCategory(payload);
+        this.setState({ isAddModalVisible: false });
+      } else {
+        alert('Category already exists');
+      }
     } else {
       alert("Name can't be blank");
     }

@@ -16,7 +16,7 @@ class CategoriesScreen extends Component {
     this.state = {
       isAddModalVisible: false,
       isEditModalVisible: false,
-      editModalName: ''
+      editModalCategory: {}
     };
   }
 
@@ -43,7 +43,7 @@ class CategoriesScreen extends Component {
   }
 
   editCategoryOnClick(category) {
-    this.setState({ isEditModalVisible: true, editModalName: category.name });
+    this.setState({ isEditModalVisible: true, editModalCategory: category });
   }
 
   editCategoryOnSubmit(id, value) {
@@ -93,6 +93,15 @@ class CategoriesScreen extends Component {
         <View>
           {this.props.categories.map(category => (
             <View key={category.id} style={styles.entryRow}>
+              <Prompt
+                title="Edit Category Name"
+                defaultValue={this.state.editModalCategory.name}
+                placeholder="Start typing"
+                visible={this.state.isEditModalVisible}
+                onCancel={() => this.setState({ isEditModalVisible: false })}
+                onSubmit={value => this.editCategoryOnSubmit(this.state.editModalCategory.id, value)}
+              />
+
               <View>
                 <Text style={styles.text}>{category.name}</Text>
               </View>
@@ -102,15 +111,6 @@ class CategoriesScreen extends Component {
                   name="ios-construct-outline"
                   style={styles.icon}
                   onPress={() => this.editCategoryOnClick(category)}
-                />
-
-                <Prompt
-                  title="Category New Name"
-                  defaultValue={this.state.editModalName}
-                  placeholder="Start typing"
-                  visible={this.state.isEditModalVisible}
-                  onCancel={() => this.setState({ isEditModalVisible: false })}
-                  onSubmit={value => this.editCategoryOnSubmit(category.id, value)}
                 />
 
                 <Ionicons

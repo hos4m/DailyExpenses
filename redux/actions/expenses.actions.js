@@ -1,3 +1,8 @@
+import { AsyncStorage } from 'react-native';
+
 export default store => ({
-  addExpense: (state, payload) => ({ expenses: [...state.expenses, payload] })
+  addExpense: async (state, payload) => {
+    await AsyncStorage.setItem('expenses', JSON.stringify([...state.expenses, payload]));
+    return { expenses: [...state.expenses, payload] };
+  }
 });

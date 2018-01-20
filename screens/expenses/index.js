@@ -32,7 +32,7 @@ class ExpensesScreen extends Component {
 
   onAddExpensesClick() {
     if (this.props.categories.length === 0) {
-      alert('Please add a category first before adding an expense, you can add a category from the second tab.')
+      alert('Please add a category first before adding an expense, you can add a category from the second tab.');
     } else {
       this.setState({ modalVisible: true });
     }

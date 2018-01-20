@@ -43,12 +43,12 @@ class CategoriesScreen extends Component {
     alert('Edit Cateogry');
   }
 
-  deleteCategory() {
+  deleteCategory(id) {
     Alert.alert(
       'Confirm',
       'Are you sure you want to delete this category?',
       [
-        { text: 'Yes', onPress: () => console.log('Yes pressed') },
+        { text: 'Yes', onPress: () => this.props.deleteCategory(id) },
         { text: 'No', onPress: () => console.log('No pressed') }
       ],
       { cancelable: true }
@@ -82,7 +82,7 @@ class CategoriesScreen extends Component {
                 <Ionicons
                   name="ios-trash-outline"
                   style={[styles.icon, styles.deleteIcon]}
-                  onPress={() => this.deleteCategory()}
+                  onPress={() => this.deleteCategory(category.id)}
                 />
               </View>
             </View>
@@ -95,6 +95,11 @@ class CategoriesScreen extends Component {
 
 const mapToProps = ({ categories }) => ({ categories });
 
-export default connect(mapToProps, actions)(({ categories, getCategories, addCategory }) => (
-  <CategoriesScreen categories={categories} getCategories={getCategories} addCategory={addCategory} />
+export default connect(mapToProps, actions)(({ categories, getCategories, addCategory, deleteCategory }) => (
+  <CategoriesScreen
+    categories={categories}
+    getCategories={getCategories}
+    addCategory={addCategory}
+    deleteCategory={deleteCategory}
+  />
 ));

@@ -5,6 +5,7 @@ import { Ionicons } from 'react-native-vector-icons';
 import { connect } from 'redux-zero/react';
 import Prompt from 'react-native-prompt';
 
+import generateID from '../../utils/generateID';
 import actions from '../../redux/actions/category.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
@@ -13,7 +14,9 @@ class CategoriesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAddModalVisible: false
+      isAddModalVisible: false,
+      isEditModalVisible: false,
+      editModalName: ''
     };
   }
 
@@ -28,7 +31,7 @@ class CategoriesScreen extends Component {
       );
 
       if (!findExistingCategory) {
-        const payload = { id: new Date().toString(), name: value };
+        const payload = { id: generateID(), name: value };
         this.props.addCategory(payload);
         this.setState({ isAddModalVisible: false });
       } else {
@@ -39,8 +42,25 @@ class CategoriesScreen extends Component {
     }
   }
 
-  editCategory() {
-    alert('Edit Cateogry');
+  editCategoryOnClick(category) {
+    this.setState({ isEditModalVisible: true, editModalName: category.name });
+  }
+
+  editCategoryOnSubmit(id, value) {
+    if (value.length > 0) {
+      const findExistingCategory = this.props.categories.find(
+        category => category.name.toLowerCase() === value.toLowerCase()
+      );
+
+      if (!findExistingCategory) {
+        this.props.editCategory(id, value);
+        this.setState({ isEditModalVisible: false, editModalName: '' });
+      } else {
+        alert('Category already exists');
+      }
+    } else {
+      alert("Name can't be blank");
+    }
   }
 
   deleteCategory(id) {
@@ -78,7 +98,21 @@ class CategoriesScreen extends Component {
               </View>
 
               <View style={styles.iconsWrapper}>
-                <Ionicons name="ios-construct-outline" style={styles.icon} onPress={() => this.editCategory()} />
+                <Ionicons
+                  name="ios-construct-outline"
+                  style={styles.icon}
+                  onPress={() => this.editCategoryOnClick(category)}
+                />
+
+                <Prompt
+                  title="Category New Name"
+                  defaultValue={this.state.editModalName}
+                  placeholder="Start typing"
+                  visible={this.state.isEditModalVisible}
+                  onCancel={() => this.setState({ isEditModalVisible: false })}
+                  onSubmit={value => this.editCategoryOnSubmit(category.id, value)}
+                />
+
                 <Ionicons
                   name="ios-trash-outline"
                   style={[styles.icon, styles.deleteIcon]}
@@ -95,11 +129,14 @@ class CategoriesScreen extends Component {
 
 const mapToProps = ({ categories }) => ({ categories });
 
-export default connect(mapToProps, actions)(({ categories, getCategories, addCategory, deleteCategory }) => (
-  <CategoriesScreen
-    categories={categories}
-    getCategories={getCategories}
-    addCategory={addCategory}
-    deleteCategory={deleteCategory}
-  />
-));
+export default connect(mapToProps, actions)(
+  ({ categories, getCategories, addCategory, editCategory, deleteCategory }) => (
+    <CategoriesScreen
+      categories={categories}
+      getCategories={getCategories}
+      addCategory={addCategory}
+      editCategory={editCategory}
+      deleteCategory={deleteCategory}
+    />
+  )
+);

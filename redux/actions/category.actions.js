@@ -1,17 +1,14 @@
 import { AsyncStorage } from 'react-native';
 
-const getValueFromAsyncStorage = async key => {
-  const value = await AsyncStorage.getItem(key);
-  return (await JSON.parse(value)) || [];
-};
-
 export default store => ({
-  getCategories: () => {
-    return getValueFromAsyncStorage('categories');
+  getCategories: async state => {
+    const result = await AsyncStorage.getItem('categories');
+    const categories = result ? [...state.categories, ...JSON.parse(result)] : [];
+    store.setState({ categories });
   },
 
   addCategory: async (state, payload) => {
     await AsyncStorage.setItem('categories', JSON.stringify([...state.categories, payload]));
-    return { categories: [...state.categories, payload] };
+    store.setState({ categories: [...state.categories, payload] });
   }
 });

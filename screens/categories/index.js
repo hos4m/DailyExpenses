@@ -7,13 +7,7 @@ import Prompt from 'react-native-prompt';
 
 import actions from '../../redux/actions/category.actions';
 import ActionButton from '../../components/actionButton';
-import categoryActions from '../../redux/actions/category.actions';
 import styles from './styles';
-
-const mapToProps = ({ categories }) => ({ categories });
-export default connect(mapToProps, actions)(({ categories, addCategory }) => (
-  <CategoriesScreen categories={categories} addCategory={addCategory} />
-));
 
 class CategoriesScreen extends Component {
   constructor(props) {
@@ -21,6 +15,10 @@ class CategoriesScreen extends Component {
     this.state = {
       isAddModalVisible: false
     };
+  }
+
+  componentWillMount() {
+    this.props.getCategories();
   }
 
   addCategory(value) {
@@ -94,3 +92,9 @@ class CategoriesScreen extends Component {
     );
   }
 }
+
+const mapToProps = ({ categories }) => ({ categories });
+
+export default connect(mapToProps, actions)(({ categories, getCategories, addCategory }) => (
+  <CategoriesScreen categories={categories} getCategories={getCategories} addCategory={addCategory} />
+));

@@ -15,10 +15,9 @@ export default store => ({
 
   deleteCategory: async (state, id) => {
     const categories = deepClone(state.categories);
-    const item = categories.find(category => category.id === id);
-    const itemIndex = categories.indexOf(item);
-    categories.splice(itemIndex, 1);
-    await AsyncStorage.setItem('categories', JSON.stringify(categories));
-    store.setState({ categories });
+    const newCategories = categories.filter(category => category.id !== id);
+
+    await AsyncStorage.setItem('categories', JSON.stringify(newCategories));
+    store.setState({ categories: newCategories });
   },
 });

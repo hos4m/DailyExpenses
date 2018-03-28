@@ -65,6 +65,10 @@ class ExpensesScreen extends Component {
     this.setState({ modalVisible: false });
   }
 
+  editExpenseOnClick () {
+    alert('edit expense');
+  }
+
   deleteExpense(id) {
     Alert.alert(
       'Confirm',
@@ -86,13 +90,19 @@ class ExpensesScreen extends Component {
 
         {this.props.expenses.map(expense => (
           <View style={styles.entryRow} key={expense.id}>
+            <Text style={styles.entryExpense}>${expense.amount}</Text>
+
             <View>
               <Text style={styles.entryCategory}>{expense.category}</Text>
               <Text style={styles.entryDate}>{moment(new Date(expense.date)).format('MMMM Do YYYY')}</Text>
             </View>
 
-            <View style={styles.rowRightArea}>
-              <Text style={styles.entryExpense}>${expense.amount}</Text>
+            <View style={commonStyles.rightSideIconsWrapper}>
+              <Ionicons
+                name="ios-construct-outline"
+                style={commonStyles.icon}
+                onPress={() => this.editExpenseOnClick(expense)}
+              />
               <Ionicons
                 name="ios-trash-outline"
                 style={[commonStyles.icon, commonStyles.deleteIcon]}

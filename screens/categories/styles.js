@@ -23,10 +23,5 @@ export default {
 
   text: {
     fontSize: 18
-  },
-
-  iconsWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center'
   }
 };

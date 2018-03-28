@@ -103,10 +103,10 @@ class CategoriesScreen extends Component {
                 <Text style={styles.text}>{category.name}</Text>
               </View>
 
-              <View style={styles.iconsWrapper}>
+              <View style={commonStyles.rightSideIconsWrapper}>
                 <Ionicons
                   name="ios-construct-outline"
-                  style={styles.icon}
+                  style={commonStyles.icon}
                   onPress={() => this.editCategoryOnClick(category)}
                 />
 

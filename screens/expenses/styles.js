@@ -34,11 +34,6 @@ export default {
     fontSize: 22
   },
 
-  rowRightArea: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-
   modal: {
     marginTop: 22,
     padding: 22,

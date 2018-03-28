@@ -21,10 +21,6 @@ class CategoriesScreen extends Component {
     };
   }
 
-  componentWillMount() {
-    this.props.getCategories();
-  }
-
   addCategory(value) {
     if (value.length > 0) {
       const findExistingCategory = this.props.categories.find(
@@ -69,8 +65,8 @@ class CategoriesScreen extends Component {
       'Confirm',
       'Are you sure you want to delete this category?',
       [
-        { text: 'Yes', onPress: () => this.props.deleteCategory(id) },
-        { text: 'No', onPress: () => console.log('No pressed') }
+        { text: 'No', onPress: () => console.log('No pressed') },
+        { text: 'Yes', onPress: () => this.props.deleteCategory(id) }
       ],
       { cancelable: true }
     );

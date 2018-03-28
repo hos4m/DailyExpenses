@@ -1,8 +1,20 @@
 import createStore from 'redux-zero';
 
-const store = createStore({
-  expenses: [],
-  categories: []
-});
+export const initialState = {
+  expenses: [
+    {
+      id: 1,
+      date: 'Wed Mar 28 2018 15:45:14 GMT+0400 (+04)',
+      category: 'Test Expense',
+      amount: '15'
+    }
+  ],
+  categories: [
+    {
+      id: 1,
+      name: 'Test Category'
+    }
+  ]
+};
 
-export default store;
+export default store = createStore(initialState);

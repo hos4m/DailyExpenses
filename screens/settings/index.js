@@ -1,38 +1,48 @@
-import React from "react";
-import { Alert } from "react-native";
-import { View, Button, Text, Picker } from "native-base";
+import React from 'react';
+import { Alert, AsyncStorage } from 'react-native';
+import { View, Button, Text, Picker } from 'native-base';
 const PickerItem = Picker.Item;
 
-import styles from "./styles";
+import store, { initialState } from '../../redux/store';
+import styles from './styles';
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      theme: 'light',
-    }
+      theme: 'light'
+    };
   }
 
   onThemePickerChange(val) {
     this.setState({ theme: val });
   }
 
-  clearEverything() {
+  showClearModal() {
     Alert.alert(
       'Confirm',
       'Are you sure you want to delete everything INCLUDING Expenses and Categories?',
       [
-        { text: 'Yes', onPress: () => console.log('Yes pressed') },
         { text: 'No', onPress: () => console.log('No pressed') },
+        { text: 'Yes', onPress: () => this.destroyAllData() }
       ],
       { cancelable: true }
-    )
+    );
+  }
+
+  async destroyAllData() {
+    try {
+      await AsyncStorage.clear();
+      store.setState(initialState);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
     return (
       <View>
-        <Button danger block onPress={() => this.clearEverything()}>
+        <Button danger block onPress={() => this.showClearModal()}>
           <Text>Clear Everything?</Text>
         </Button>
 
@@ -47,6 +57,6 @@ export default class SettingsScreen extends React.Component {
           <PickerItem label="Dark Theme" value="dark" />
         </Picker>
       </View>
-    )
+    );
   }
-};
+}

@@ -10,6 +10,7 @@ import ExpensesScreen from './screens/expenses';
 import SummaryScreen from './screens/summary';
 import CategoriesScreen from './screens/categories';
 import SettingsScreen from './screens/settings';
+import actions from './redux/actions/category.actions';
 
 export default class App extends React.Component {
   generateTabHeading(name) {
@@ -66,3 +67,12 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
+
+// const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
+
+// export default connect(mapToProps, actions)(({ expenses, categories }) => (
+//   <App
+//     expenses={expenses}
+//     categories={categories}
+//   />
+// ));

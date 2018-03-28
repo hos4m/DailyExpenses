@@ -6,15 +6,11 @@ import { Modal, Alert } from 'react-native';
 const PickerItem = Picker.Item;
 import { Ionicons } from 'react-native-vector-icons';
 
+import generateID from '../../utils/generateID';
 import actions from '../../redux/actions/expenses.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
 import commonStyles from '../../config/commonStyles';
-
-const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
-export default connect(mapToProps, actions)(({ expenses, categories, addExpense, deleteExpense }) => (
-  <ExpensesScreen expenses={expenses} categories={categories} addExpense={addExpense} deleteExpense={deleteExpense} />
-));
 
 class ExpensesScreen extends Component {
   constructor(props) {
@@ -53,7 +49,7 @@ class ExpensesScreen extends Component {
 
     if (modalAmount && modalSelectedCategory) {
       const payload = {
-        id: new Date().toString(),
+        id: generateID(),
         date: new Date().toString(),
         category: modalSelectedCategory,
         amount: modalAmount
@@ -74,8 +70,8 @@ class ExpensesScreen extends Component {
       'Confirm',
       'Are you sure you want to delete this expense?',
       [
-        { text: 'Yes', onPress: () => this.props.deleteExpense(id) },
-        { text: 'No', onPress: () => console.log('No pressed') }
+        { text: 'No', onPress: () => console.log('No pressed') },
+        { text: 'Yes', onPress: () => this.props.deleteExpense(id) }
       ],
       { cancelable: true }
     );
@@ -150,3 +146,13 @@ class ExpensesScreen extends Component {
     );
   }
 }
+
+const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
+export default connect(mapToProps, actions)(({ expenses, categories, addExpense, deleteExpense }) => (
+  <ExpensesScreen
+    expenses={expenses}
+    categories={categories}
+    addExpense={addExpense}
+    deleteExpense={deleteExpense}
+  />
+));

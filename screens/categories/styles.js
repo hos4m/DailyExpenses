@@ -1,4 +1,4 @@
-import theme from '../../constants/theme';
+import theme from '../../config/theme';
 
 export default {
   noItems: {
@@ -28,15 +28,5 @@ export default {
   iconsWrapper: {
     flexDirection: 'row',
     alignItems: 'center'
-  },
-
-  icon: {
-    fontSize: 30,
-    padding: 10,
-    color: 'gray'
-  },
-
-  deleteIcon: {
-    color: 'red'
   }
 };

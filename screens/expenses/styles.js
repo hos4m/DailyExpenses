@@ -1,4 +1,4 @@
-import theme from '../../constants/theme';
+import theme from '../../config/theme';
 
 export default {
   noItems: {
@@ -32,6 +32,11 @@ export default {
 
   entryExpense: {
     fontSize: 22
+  },
+
+  rowRightArea: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
 
   modal: {

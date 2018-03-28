@@ -9,6 +9,7 @@ import generateID from '../../utils/generateID';
 import actions from '../../redux/actions/category.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
+import commonStyles from '../../config/commonStyles';
 
 class CategoriesScreen extends Component {
   constructor(props) {
@@ -115,7 +116,7 @@ class CategoriesScreen extends Component {
 
                 <Ionicons
                   name="ios-trash-outline"
-                  style={[styles.icon, styles.deleteIcon]}
+                  style={[commonStyles.icon, commonStyles.deleteIcon]}
                   onPress={() => this.deleteCategory(category.id)}
                 />
               </View>

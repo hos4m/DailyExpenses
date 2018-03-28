@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'redux-zero/react';
 import moment from 'moment';
 import { View, Text, Button, Form, Item, Input, Picker } from 'native-base';
-import { Modal } from 'react-native';
+import { Modal, Alert } from 'react-native';
 const PickerItem = Picker.Item;
+import { Ionicons } from 'react-native-vector-icons';
 
 import actions from '../../redux/actions/expenses.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
+import commonStyles from '../../config/commonStyles';
 
 const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
-export default connect(mapToProps, actions)(({ expenses, categories, addExpense }) => (
-  <ExpensesScreen expenses={expenses} categories={categories} addExpense={addExpense} />
+export default connect(mapToProps, actions)(({ expenses, categories, addExpense, deleteExpense }) => (
+  <ExpensesScreen expenses={expenses} categories={categories} addExpense={addExpense} deleteExpense={deleteExpense} />
 ));
 
 class ExpensesScreen extends Component {
@@ -67,6 +69,18 @@ class ExpensesScreen extends Component {
     this.setState({ modalVisible: false });
   }
 
+  deleteExpense(id) {
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to delete this expense?',
+      [
+        { text: 'Yes', onPress: () => this.props.deleteExpense(id) },
+        { text: 'No', onPress: () => console.log('No pressed') }
+      ],
+      { cancelable: true }
+    );
+  }
+
   render() {
     return (
       <View>
@@ -81,8 +95,13 @@ class ExpensesScreen extends Component {
               <Text style={styles.entryDate}>{moment(new Date(expense.date)).format('MMMM Do YYYY')}</Text>
             </View>
 
-            <View>
+            <View style={styles.rowRightArea}>
               <Text style={styles.entryExpense}>${expense.amount}</Text>
+              <Ionicons
+                name="ios-trash-outline"
+                style={[commonStyles.icon, commonStyles.deleteIcon]}
+                onPress={() => this.deleteExpense(expense.id)}
+              />
             </View>
           </View>
         ))}

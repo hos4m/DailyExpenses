@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { View, Text } from 'native-base';
 import { Ionicons } from 'react-native-vector-icons';
 import { connect } from 'redux-zero/react';
-import Prompt from 'react-native-prompt';
+import Prompt from 'rn-prompt';
 
 import generateID from '../../utils/generateID';
 import actions from '../../redux/actions/category.actions';

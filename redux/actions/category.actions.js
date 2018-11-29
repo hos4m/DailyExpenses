@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import deepClone from '../../utils/deepClone';
+import cloneDeep from 'lodash/cloneDeep';
 
 export default store => ({
   getCategories: async state => {
@@ -16,7 +16,7 @@ export default store => ({
   editCategory: async (state, id, value) => {
     let item = state.categories.find(category => category.id === id);
     const itemIndex = state.categories.indexOf(item);
-    const newCategories = deepClone(state.categories);
+    const newCategories = cloneDeep(state.categories);
     item.name = value;
     newCategories[itemIndex] = item;
 
@@ -25,7 +25,7 @@ export default store => ({
   },
 
   deleteCategory: async (state, id) => {
-    const categories = deepClone(state.categories);
+    const categories = cloneDeep(state.categories);
     const newCategories = categories.filter(category => category.id !== id);
 
     await AsyncStorage.setItem('categories', JSON.stringify(newCategories));

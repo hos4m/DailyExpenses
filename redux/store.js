@@ -5,7 +5,7 @@ export const initialState = {
     {
       id: 1,
       date: 'Wed Mar 28 2018 15:45:14 GMT+0400 (+04)',
-      category: 'Test Expense',
+      category: 'Test Category',
       amount: '15'
     }
   ],

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Alert, AsyncStorage } from 'react-native';
-import { View, Button, Text, Picker } from 'native-base';
-const PickerItem = Picker.Item;
+import {
+  View, Button, Text, Picker
+} from 'native-base';
 
 import store, { initialState } from '../../redux/store';
 import styles from './styles';
+
+const PickerItem = Picker.Item;
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
@@ -18,19 +21,19 @@ export default class SettingsScreen extends React.Component {
     this.setState({ theme: val });
   }
 
-  showClearModal() {
+  static showClearModal() {
     Alert.alert(
       'Confirm',
       'Are you sure you want to delete everything INCLUDING Expenses and Categories?',
       [
         { text: 'No', onPress: () => console.log('No pressed') },
-        { text: 'Yes', onPress: () => this.destroyAllData() }
+        { text: 'Yes', onPress: () => SettingsScreen.destroyAllData() }
       ],
       { cancelable: true }
     );
   }
 
-  async destroyAllData() {
+  static async destroyAllData() {
     try {
       await AsyncStorage.clear();
       store.setState(initialState);
@@ -42,7 +45,7 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <View>
-        <Button danger block onPress={() => this.showClearModal()}>
+        <Button danger block onPress={() => SettingsScreen.showClearModal()}>
           <Text>Clear Everything?</Text>
         </Button>
 

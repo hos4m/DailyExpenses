@@ -7,7 +7,7 @@ export default {
     fontSize: 48,
     opacity: 0.2,
     fontWeight: '700',
-    letterSpacing: 2,
+    letterSpacing: 2
   },
 
   entryRow: {

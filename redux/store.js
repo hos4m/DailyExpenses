@@ -17,4 +17,4 @@ export const initialState = {
   ]
 };
 
-export default store = createStore(initialState);
+export default createStore(initialState);

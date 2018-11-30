@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Alert } from 'react-native';
 import { View, Text } from 'native-base';
 import { Ionicons } from 'react-native-vector-icons';
@@ -65,7 +66,7 @@ class CategoriesScreen extends Component {
       'Confirm',
       'Are you sure you want to delete this category?',
       [
-        { text: 'No', onPress: () => console.log('No pressed') },
+        { text: 'No', onPress: () => alert('No pressed') },
         { text: 'Yes', onPress: () => this.props.deleteCategory(id) }
       ],
       { cancelable: true }
@@ -75,7 +76,10 @@ class CategoriesScreen extends Component {
   render() {
     return (
       <View>
-        <ActionButton title="Add Category" onPressFunc={() => this.setState({ isAddModalVisible: true })} />
+        <ActionButton
+          title="Add Category"
+          onPressFunc={() => this.setState({ isAddModalVisible: true })}
+        />
 
         <Prompt
           title="Category Name"
@@ -96,7 +100,8 @@ class CategoriesScreen extends Component {
                 placeholder="Start typing"
                 visible={this.state.isEditModalVisible}
                 onCancel={() => this.setState({ isEditModalVisible: false })}
-                onSubmit={value => this.editCategoryOnSubmit(this.state.editModalCategory.id, value)}
+                onSubmit={value => this.editCategoryOnSubmit(this.state.editModalCategory.id, value)
+                }
               />
 
               <View>
@@ -126,14 +131,24 @@ class CategoriesScreen extends Component {
 
 const mapToProps = ({ categories }) => ({ categories });
 
-export default connect(mapToProps, actions)(
-  ({ categories, getCategories, addCategory, editCategory, deleteCategory }) => (
-    <CategoriesScreen
-      categories={categories}
-      getCategories={getCategories}
-      addCategory={addCategory}
-      editCategory={editCategory}
-      deleteCategory={deleteCategory}
-    />
-  )
-);
+export default connect(
+  mapToProps,
+  actions
+)(({
+  categories, getCategories, addCategory, editCategory, deleteCategory
+}) => (
+  <CategoriesScreen
+    categories={categories}
+    getCategories={getCategories}
+    addCategory={addCategory}
+    editCategory={editCategory}
+    deleteCategory={deleteCategory}
+  />
+));
+
+CategoriesScreen.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addCategory: PropTypes.func.isRequired,
+  editCategory: PropTypes.func.isRequired,
+  deleteCategory: PropTypes.func.isRequired
+};

@@ -1,36 +1,35 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'redux-zero/react';
 import moment from 'moment';
-import { View, Text, Button, Form, Item, Input, Picker } from 'native-base';
+import {
+  View, Text, Button, Form, Item, Input, Picker
+} from 'native-base';
 import { Modal, Alert } from 'react-native';
-const PickerItem = Picker.Item;
 import { Ionicons } from 'react-native-vector-icons';
 
+import getDefaultExpensesFields from '../../utils/expensesUtils';
 import generateID from '../../utils/generateID';
 import actions from '../../redux/actions/expenses.actions';
 import ActionButton from '../../components/actionButton';
 import styles from './styles';
 import commonStyles from '../../config/commonStyles';
 
+const PickerItem = Picker.Item;
+
 class ExpensesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.resetAddExpenseFields()
-    };
-  }
-
-  resetAddExpenseFields() {
-    return {
-      modalVisible: false,
-      modalAmount: null,
-      modalSelectedCategory: null
+      ...getDefaultExpensesFields()
     };
   }
 
   onAddExpensesClick() {
     if (this.props.categories.length === 0) {
-      alert('Please add a category first before adding an expense, you can add a category from the second tab.');
+      alert(
+        'Please add a category first before adding an expense, you can add a category from the second tab.'
+      );
     } else {
       this.setState({ modalVisible: true });
     }
@@ -65,10 +64,6 @@ class ExpensesScreen extends Component {
     this.setState({ modalVisible: false });
   }
 
-  editExpenseOnClick () {
-    alert('edit expense');
-  }
-
   deleteExpense(id) {
     Alert.alert(
       'Confirm',
@@ -94,14 +89,16 @@ class ExpensesScreen extends Component {
 
             <View>
               <Text style={styles.entryCategory}>{expense.category}</Text>
-              <Text style={styles.entryDate}>{moment(new Date(expense.date)).format('MMMM Do YYYY')}</Text>
+              <Text style={styles.entryDate}>
+                {moment(new Date(expense.date)).format('MMMM Do YYYY')}
+              </Text>
             </View>
 
             <View style={commonStyles.rightSideIconsWrapper}>
               <Ionicons
                 name="ios-construct-outline"
                 style={commonStyles.icon}
-                onPress={() => this.editExpenseOnClick(expense)}
+                onPress={() => console.log('edit expense', expense)}
               />
               <Ionicons
                 name="ios-trash-outline"
@@ -158,7 +155,12 @@ class ExpensesScreen extends Component {
 }
 
 const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
-export default connect(mapToProps, actions)(({ expenses, categories, addExpense, deleteExpense }) => (
+export default connect(
+  mapToProps,
+  actions
+)(({
+  expenses, categories, addExpense, deleteExpense
+}) => (
   <ExpensesScreen
     expenses={expenses}
     categories={categories}
@@ -166,3 +168,10 @@ export default connect(mapToProps, actions)(({ expenses, categories, addExpense,
     deleteExpense={deleteExpense}
   />
 ));
+
+ExpensesScreen.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
+  addExpense: PropTypes.func.isRequired,
+  deleteExpense: PropTypes.func.isRequired
+};

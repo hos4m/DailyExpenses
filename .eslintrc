@@ -1,4 +1,9 @@
 {
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
   "parser": "babel-eslint",
   "plugins": ["react", "react-native"],
   "parserOptions": {
@@ -9,6 +14,26 @@
   },
   "extends": ["eslint:recommended", "plugin:react/recommended", "airbnb-base"],
   "rules": {
-    "arrow-body-style": "warn"
+    "arrow-body-style": "warn",
+    "comma-dangle": ["error", "never"],
+    "no-alert": 0,
+    "class-methods-use-this": [
+      "error",
+      {
+        "exceptMethods": [
+          "render",
+          "getInitialState",
+          "getDefaultProps",
+          "getChildContext",
+          "componentWillMount",
+          "componentDidMount",
+          "componentWillReceiveProps",
+          "shouldComponentUpdate",
+          "componentWillUpdate",
+          "componentDidUpdate",
+          "componentWillUnmount"
+        ]
+      }
+    ]
   }
 }

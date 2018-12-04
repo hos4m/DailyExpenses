@@ -13,4 +13,4 @@ export default {
   deleteIcon: {
     color: 'red'
   }
-}
+};

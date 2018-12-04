@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Button, Text } from "native-base";
-import { Ionicons } from "react-native-vector-icons";
+import React from 'react';
+import { View, Button, Text } from 'native-base';
+import { Ionicons } from 'react-native-vector-icons';
 import PropTypes from 'prop-types';
 
-import styles from "./styles";
+import styles from './styles';
 
 const ActionButton = ({ title, onPressFunc }) => (
   <View style={styles.addButtonView}>

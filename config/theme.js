@@ -1,3 +1,3 @@
 export default {
-  borderColor: "#EEE"
+  borderColor: '#EEE'
 };

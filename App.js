@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Content, Tab, Tabs, TabHeading, Text } from 'native-base';
+import {
+  Container, Content, Tab, Tabs, TabHeading
+} from 'native-base';
 import { Ionicons } from 'react-native-vector-icons';
 import { Provider } from 'redux-zero/react';
 
@@ -10,10 +12,19 @@ import ExpensesScreen from './screens/expenses';
 import SummaryScreen from './screens/summary';
 import CategoriesScreen from './screens/categories';
 import SettingsScreen from './screens/settings';
-import actions from './redux/actions/category.actions';
+
+const styles = StyleSheet.create({
+  appContent: {
+    padding: 10
+  },
+
+  tabIcon: {
+    fontSize: 20
+  }
+});
 
 export default class App extends React.Component {
-  generateTabHeading(name) {
+  static generateTabHeading(name) {
     return (
       <TabHeading>
         <Ionicons name={name} style={styles.tabIcon} />
@@ -28,25 +39,25 @@ export default class App extends React.Component {
           <AppHeader />
 
           <Tabs tabBarPosition="bottom">
-            <Tab heading={this.generateTabHeading('ios-cash-outline')}>
+            <Tab heading={App.generateTabHeading('ios-cash-outline')}>
               <Content style={styles.appContent}>
                 <ExpensesScreen />
               </Content>
             </Tab>
 
-            <Tab heading={this.generateTabHeading('ios-list-box-outline')}>
+            <Tab heading={App.generateTabHeading('ios-list-box-outline')}>
               <Content style={styles.appContent}>
                 <CategoriesScreen />
               </Content>
             </Tab>
 
-            <Tab heading={this.generateTabHeading('ios-stats-outline')}>
+            <Tab heading={App.generateTabHeading('ios-stats-outline')}>
               <Content style={styles.appContent}>
                 <SummaryScreen />
               </Content>
             </Tab>
 
-            <Tab heading={this.generateTabHeading('ios-options-outline')}>
+            <Tab heading={App.generateTabHeading('ios-options-outline')}>
               <Content style={styles.appContent}>
                 <SettingsScreen />
               </Content>
@@ -57,22 +68,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  appContent: {
-    padding: 10
-  },
-
-  tabIcon: {
-    fontSize: 20
-  }
-});
-
-// const mapToProps = ({ expenses, categories }) => ({ expenses, categories });
-
-// export default connect(mapToProps, actions)(({ expenses, categories }) => (
-//   <App
-//     expenses={expenses}
-//     categories={categories}
-//   />
-// ));

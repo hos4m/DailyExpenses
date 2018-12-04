@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-native';
 import { View, Text } from 'native-base';
@@ -75,7 +75,7 @@ class CategoriesScreen extends Component {
 
   render() {
     return (
-      <View>
+      <Fragment>
         <ActionButton
           title="Add Category"
           onPressFunc={() => this.setState({ isAddModalVisible: true })}
@@ -83,7 +83,6 @@ class CategoriesScreen extends Component {
 
         <Prompt
           title="Category Name"
-          placeholder="Start typing"
           visible={this.state.isAddModalVisible}
           onCancel={() => this.setState({ isAddModalVisible: false })}
           onSubmit={value => this.addCategory(value)}
@@ -97,7 +96,6 @@ class CategoriesScreen extends Component {
               <Prompt
                 title="Edit Category Name"
                 defaultValue={this.state.editModalCategory.name}
-                placeholder="Start typing"
                 visible={this.state.isEditModalVisible}
                 onCancel={() => this.setState({ isEditModalVisible: false })}
                 onSubmit={value => this.editCategoryOnSubmit(this.state.editModalCategory.id, value)
@@ -124,13 +122,12 @@ class CategoriesScreen extends Component {
             </View>
           ))}
         </View>
-      </View>
+      </Fragment>
     );
   }
 }
 
 const mapToProps = ({ categories }) => ({ categories });
-
 export default connect(
   mapToProps,
   actions

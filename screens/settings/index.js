@@ -26,7 +26,7 @@ export default class SettingsScreen extends React.Component {
       'Confirm',
       'Are you sure you want to delete everything INCLUDING Expenses and Categories?',
       [
-        { text: 'No', onPress: () => console.log('No pressed') },
+        { text: 'No', onPress: () => alert('No pressed') },
         { text: 'Yes', onPress: () => SettingsScreen.destroyAllData() }
       ],
       { cancelable: true }
@@ -38,7 +38,7 @@ export default class SettingsScreen extends React.Component {
       await AsyncStorage.clear();
       store.setState(initialState);
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   }
 

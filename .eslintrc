@@ -16,7 +16,7 @@
   "rules": {
     "arrow-body-style": "warn",
     "comma-dangle": ["error", "never"],
-    "no-alert": 0,
+    "no-alert": "off",
     "class-methods-use-this": [
       "error",
       {
@@ -34,6 +34,7 @@
           "componentWillUnmount"
         ]
       }
-    ]
+    ],
+    "lines-between-class-members": "error"
   }
 }
